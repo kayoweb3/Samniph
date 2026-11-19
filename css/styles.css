@@ -1,0 +1,923 @@
+/* ==========================================================================
+   SAMNIPH GLOBAL INTEGRATED CONCEPT LTD — Responsive Stylesheet
+   File path: ./css/styles.css
+   Brand palette derived from Samniph Global profile (#133873 navy & #2998e5 sky)
+   ========================================================================== */
+
+:root {
+  --brand-primary: #133873;       /* Corporate deep navy blue */
+  --brand-primary-mid: #1d529e;   /* Medium royal blue */
+  --brand-dark: #0b2247;          /* Dark navy for topbar & footer */
+  --brand-accent: #2998e5;        /* Cerulean/sky blue from logo */
+  --brand-accent-hover: #1a7cc2;
+
+  --bg-page: #ffffff;
+  --bg-surface: #f4f7fb;
+  --bg-tint: #ebf2fc;
+  --text-main: #182230;
+  --text-muted: #4b5b73;
+  --text-inverse: #ffffff;
+  --border-color: #d7e1ee;
+
+  --radius-sm: 6px;
+  --radius-md: 10px;
+  --radius-lg: 14px;
+  --shadow-sm: 0 3px 12px rgba(11, 34, 71, 0.06);
+  --shadow-md: 0 12px 28px rgba(11, 34, 71, 0.12);
+}
+
+/* ==========================================================================
+   Base Reset & Typography
+   ========================================================================== */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 88px;
+}
+
+body {
+  font-family: "Plus Jakarta Sans", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  color: var(--text-main);
+  background-color: var(--bg-page);
+  line-height: 1.65;
+  overflow-x: hidden;
+}
+
+h1,
+h2,
+h3,
+.logo-text strong {
+  font-family: "Montserrat", system-ui, -apple-system, sans-serif;
+}
+
+img {
+  display: block;
+  max-width: 100%;
+  height: auto;
+}
+
+a {
+  color: inherit;
+}
+
+code {
+  font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+  font-size: 0.88em;
+  background-color: var(--bg-tint);
+  color: var(--brand-primary);
+  padding: 0.12rem 0.38rem;
+  border-radius: 4px;
+}
+
+.container {
+  width: min(1160px, 92%);
+  margin-inline: auto;
+}
+
+/* ==========================================================================
+   Top Utility Bar
+   ========================================================================== */
+.topbar {
+  background-color: var(--brand-dark);
+  color: rgba(255, 255, 255, 0.88);
+  font-size: 0.8rem;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.topbar-inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.4rem 1rem;
+  padding-block: 0.45rem;
+  flex-wrap: wrap;
+}
+
+.topbar-links {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem 0.65rem;
+  flex-wrap: wrap;
+}
+
+.topbar-links a {
+  text-decoration: none;
+  transition: color 0.2s ease;
+}
+
+.topbar-links a:hover {
+  color: var(--brand-accent);
+}
+
+/* ==========================================================================
+   Responsive Header & Navigation (Pure CSS — works directly with your HTML)
+   ========================================================================== */
+.site-header {
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  background-color: rgba(255, 255, 255, 0.97);
+  backdrop-filter: blur(10px);
+  border-bottom: 1px solid var(--border-color);
+  box-shadow: var(--shadow-sm);
+}
+
+.nav-wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  min-height: 76px;
+  gap: 0.75rem 1.25rem;
+  padding-block: 0.55rem;
+  flex-wrap: wrap;
+}
+
+.brand-logo {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.65rem;
+  text-decoration: none;
+  min-width: 0;
+}
+
+.brand-logo img {
+  height: 46px;
+  width: auto;
+  max-width: 110px;
+  object-fit: contain;
+  border-radius: 4px;
+  flex-shrink: 0;
+}
+
+.logo-emblem {
+  flex-shrink: 0;
+}
+
+.logo-text {
+  display: flex;
+  flex-direction: column;
+  line-height: 1.15;
+  min-width: 0;
+}
+
+.logo-text strong {
+  font-size: clamp(1rem, 1.5vw, 1.22rem);
+  letter-spacing: 0.05em;
+  color: var(--brand-primary);
+}
+
+.logo-text small {
+  font-size: 0.72rem;
+  font-weight: 600;
+  color: var(--text-muted);
+  letter-spacing: 0.01em;
+}
+
+.main-nav {
+  display: flex;
+  align-items: center;
+  gap: clamp(0.85rem, 2vw, 1.75rem);
+  flex-wrap: wrap;
+}
+
+.main-nav a:not(.btn) {
+  text-decoration: none;
+  font-weight: 600;
+  font-size: 0.93rem;
+  color: var(--brand-primary);
+  white-space: nowrap;
+  padding-block: 0.25rem;
+  position: relative;
+  transition: color 0.2s ease;
+}
+
+.main-nav a:not(.btn)::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: -2px;
+  width: 0;
+  height: 2px;
+  background-color: var(--brand-accent);
+  transition: width 0.2s ease;
+}
+
+.main-nav a:not(.btn):hover {
+  color: var(--brand-accent);
+}
+
+.main-nav a:not(.btn):hover::after {
+  width: 100%;
+}
+
+/* ==========================================================================
+   Buttons
+   ========================================================================== */
+.btn {
+  display: inline-block;
+  padding: 0.78rem 1.45rem;
+  border-radius: var(--radius-sm);
+  font-weight: 700;
+  font-size: 0.92rem;
+  text-decoration: none;
+  border: 2px solid transparent;
+  cursor: pointer;
+  text-align: center;
+  transition: background-color 0.2s ease, border-color 0.2s ease, color 0.2s ease;
+}
+
+.btn-sm {
+  padding: 0.5rem 1.05rem;
+  font-size: 0.86rem;
+}
+
+.btn-primary {
+  background-color: var(--brand-primary);
+  color: var(--text-inverse);
+}
+
+.btn-primary:hover {
+  background-color: var(--brand-primary-mid);
+}
+
+.btn-accent {
+  background-color: var(--brand-accent);
+  color: var(--text-inverse);
+}
+
+.btn-accent:hover {
+  background-color: var(--brand-accent-hover);
+}
+
+.btn-outline {
+  border-color: rgba(255, 255, 255, 0.65);
+  color: var(--text-inverse);
+}
+
+.btn-outline:hover {
+  background-color: rgba(255, 255, 255, 0.14);
+  border-color: var(--text-inverse);
+}
+
+/* ==========================================================================
+   Hero Section
+   ========================================================================== */
+.hero {
+  background:
+    radial-gradient(circle at 85% 20%, rgba(41, 152, 229, 0.28), transparent 45%),
+    linear-gradient(135deg, var(--brand-dark) 0%, var(--brand-primary) 58%, var(--brand-primary-mid) 100%);
+  color: var(--text-inverse);
+  padding: clamp(3.25rem, 6vw, 5.25rem) 0;
+}
+
+.hero-grid {
+  display: grid;
+  grid-template-columns: 1.45fr 0.9fr;
+  gap: 2.5rem;
+  align-items: center;
+}
+
+.eyebrow {
+  text-transform: uppercase;
+  letter-spacing: 0.11em;
+  font-size: 0.78rem;
+  font-weight: 700;
+  color: var(--brand-accent);
+  margin-bottom: 0.65rem;
+}
+
+.hero h1 {
+  font-size: clamp(1.9rem, 4vw, 3rem);
+  line-height: 1.16;
+  margin-bottom: 1.1rem;
+}
+
+.hero-subtitle {
+  font-size: clamp(0.98rem, 1.3vw, 1.06rem);
+  color: rgba(255, 255, 255, 0.9);
+  margin-bottom: 1.8rem;
+  max-width: 62ch;
+}
+
+.hero-actions {
+  display: flex;
+  gap: 0.9rem;
+  flex-wrap: wrap;
+  margin-bottom: 1.6rem;
+}
+
+.hero-disciplines {
+  font-size: 0.85rem;
+  color: rgba(255, 255, 255, 0.84);
+  padding-top: 1rem;
+  border-top: 1px solid rgba(255, 255, 255, 0.16);
+}
+
+.hero-card {
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  border-radius: var(--radius-md);
+  padding: 1.75rem;
+  backdrop-filter: blur(6px);
+}
+
+.hero-card h2 {
+  font-size: 1.15rem;
+  margin-bottom: 1.1rem;
+  color: #ffffff;
+}
+
+.snapshot-list {
+  display: grid;
+  gap: 0.9rem;
+}
+
+.snapshot-list div {
+  padding-bottom: 0.75rem;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.12);
+}
+
+.snapshot-list div:last-child {
+  border-bottom: none;
+  padding-bottom: 0;
+}
+
+.snapshot-list dt {
+  font-size: 0.74rem;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: #8fd0ff;
+  font-weight: 700;
+}
+
+.snapshot-list dd {
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: #ffffff;
+}
+
+/* ==========================================================================
+   Shared Section Layout
+   ========================================================================== */
+.section {
+  padding: clamp(3.25rem, 6vw, 4.75rem) 0;
+}
+
+.section-alt {
+  background-color: var(--bg-surface);
+}
+
+.section-header {
+  max-width: 720px;
+  margin-bottom: 2.5rem;
+}
+
+.section-header h2 {
+  font-size: clamp(1.55rem, 3vw, 2.25rem);
+  color: var(--brand-primary);
+  margin-bottom: 0.65rem;
+  line-height: 1.22;
+}
+
+.section-lead {
+  color: var(--text-muted);
+}
+
+/* ==========================================================================
+   About, Mission, Vision, Aims, Values & Why Choose Us
+   ========================================================================== */
+.about-intro-grid {
+  display: grid;
+  grid-template-columns: 1.35fr 0.95fr;
+  gap: 2.5rem;
+  align-items: start;
+  margin-bottom: 2.75rem;
+}
+
+.about-intro-grid h2 {
+  font-size: clamp(1.55rem, 3vw, 2.2rem);
+  color: var(--brand-primary);
+  margin-bottom: 1rem;
+  line-height: 1.22;
+}
+
+.about-intro-grid p {
+  margin-bottom: 1rem;
+  color: var(--text-main);
+}
+
+.mv-stack {
+  display: grid;
+  gap: 1.25rem;
+}
+
+.mv-card {
+  background: var(--bg-surface);
+  border: 1px solid var(--border-color);
+  border-left: 5px solid var(--brand-primary);
+  border-radius: var(--radius-md);
+  padding: 1.5rem;
+  box-shadow: var(--shadow-sm);
+}
+
+.mv-card-accent {
+  border-left-color: var(--brand-accent);
+}
+
+.mv-card h3 {
+  color: var(--brand-primary);
+  font-size: 1.1rem;
+  margin-bottom: 0.5rem;
+}
+
+.pillars-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 1.5rem;
+}
+
+.panel {
+  background: var(--bg-surface);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-md);
+  padding: 1.65rem;
+}
+
+.panel h3 {
+  color: var(--brand-primary);
+  font-size: 1.1rem;
+  margin-bottom: 1rem;
+}
+
+.check-list {
+  list-style: none;
+  display: grid;
+  gap: 0.65rem;
+}
+
+.check-list li {
+  position: relative;
+  padding-left: 1.35rem;
+  color: var(--text-main);
+  font-size: 0.95rem;
+}
+
+.check-list li::before {
+  content: "✓";
+  position: absolute;
+  left: 0;
+  color: var(--brand-accent-hover);
+  font-weight: 800;
+}
+
+.tag-list {
+  list-style: none;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.55rem;
+}
+
+.tag-list li {
+  background: var(--bg-page);
+  border: 1px solid var(--border-color);
+  color: var(--brand-primary);
+  font-weight: 600;
+  font-size: 0.86rem;
+  padding: 0.42rem 0.78rem;
+  border-radius: 999px;
+}
+
+/* ==========================================================================
+   Services Section
+   ========================================================================== */
+.services-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(290px, 1fr));
+  gap: 1.5rem;
+}
+
+.service-card {
+  background: var(--bg-page);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-md);
+  padding: 1.75rem;
+  box-shadow: var(--shadow-sm);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.service-card:hover {
+  transform: translateY(-3px);
+  box-shadow: var(--shadow-md);
+}
+
+.service-num {
+  display: inline-block;
+  font-family: "Montserrat", sans-serif;
+  font-weight: 800;
+  font-size: 0.85rem;
+  color: var(--brand-accent-hover);
+  background: var(--bg-tint);
+  padding: 0.25rem 0.6rem;
+  border-radius: var(--radius-sm);
+  margin-bottom: 0.85rem;
+}
+
+.service-card h3 {
+  color: var(--brand-primary);
+  font-size: 1.14rem;
+  margin-bottom: 0.65rem;
+}
+
+.service-card p {
+  color: var(--text-muted);
+  font-size: 0.95rem;
+}
+
+/* ==========================================================================
+   Project Portfolio Section
+   ========================================================================== */
+.projects-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(265px, 1fr));
+  gap: 1.6rem;
+}
+
+.project-card {
+  background: var(--bg-page);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-md);
+  overflow: hidden;
+  box-shadow: var(--shadow-sm);
+  display: flex;
+  flex-direction: column;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.project-card:hover {
+  transform: translateY(-3px);
+  box-shadow: var(--shadow-md);
+}
+
+.project-media {
+  aspect-ratio: 16 / 10;
+  background-color: var(--bg-tint);
+  overflow: hidden;
+}
+
+.project-media img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.image-placeholder {
+  width: 100%;
+  height: 100%;
+  display: grid;
+  place-content: center;
+  text-align: center;
+  padding: 1rem;
+  gap: 0.25rem;
+  background: linear-gradient(135deg, #e7f0fc, #d3e5fa);
+  color: var(--brand-primary);
+}
+
+.image-placeholder span {
+  font-weight: 700;
+  font-size: 0.95rem;
+}
+
+.image-placeholder small {
+  color: var(--text-muted);
+  font-size: 0.78rem;
+}
+
+.project-body {
+  padding: 1.35rem;
+  display: grid;
+  gap: 0.45rem;
+}
+
+.project-tag {
+  font-size: 0.74rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--brand-accent-hover);
+}
+
+.project-body h3 {
+  font-size: 1.08rem;
+  color: var(--brand-primary);
+}
+
+.project-loc {
+  font-size: 0.88rem;
+  color: var(--brand-primary-mid);
+}
+
+.project-body p:last-child {
+  font-size: 0.92rem;
+  color: var(--text-muted);
+}
+
+/* ==========================================================================
+   Organization Structure & Growth Strategy (if included below projects)
+   ========================================================================== */
+.org-box {
+  background: var(--bg-page);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-md);
+  padding: 2rem 1.5rem;
+  margin-bottom: 2.25rem;
+  box-shadow: var(--shadow-sm);
+  text-align: center;
+}
+
+.org-box h3 {
+  color: var(--brand-primary);
+  margin-bottom: 1.5rem;
+  font-size: 1.2rem;
+}
+
+.org-tier {
+  display: flex;
+  justify-content: center;
+}
+
+.org-node {
+  display: inline-block;
+  padding: 0.65rem 1.4rem;
+  border-radius: var(--radius-sm);
+  font-weight: 700;
+  font-size: 0.92rem;
+}
+
+.org-director {
+  background: var(--brand-primary);
+  color: #ffffff;
+}
+
+.org-mgmt {
+  background: var(--bg-tint);
+  color: var(--brand-primary);
+  border: 1.5px solid var(--brand-primary);
+}
+
+.org-connector {
+  width: 2px;
+  height: 22px;
+  background: var(--brand-accent);
+  margin: 0 auto;
+}
+
+.org-branches {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(240px, 1fr));
+  gap: 1.75rem;
+  margin-top: 1.5rem;
+  padding-top: 1.5rem;
+  border-top: 2px solid var(--border-color);
+}
+
+.org-dept-head {
+  background: var(--brand-accent);
+  color: #ffffff;
+  margin-bottom: 0.9rem;
+}
+
+.org-units {
+  list-style: none;
+  display: grid;
+  gap: 0.5rem;
+}
+
+.org-units li {
+  background: var(--bg-surface);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-sm);
+  padding: 0.5rem 0.85rem;
+  font-size: 0.88rem;
+  font-weight: 600;
+  color: var(--text-main);
+}
+
+.strategy-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(290px, 1fr));
+  gap: 1.35rem;
+}
+
+.strategy-item {
+  background: var(--bg-page);
+  border: 1px solid var(--border-color);
+  border-top: 3px solid var(--brand-primary);
+  border-radius: var(--radius-md);
+  padding: 1.4rem;
+}
+
+.strategy-item h3 {
+  font-size: 1.02rem;
+  color: var(--brand-primary);
+  margin-bottom: 0.45rem;
+}
+
+.strategy-item p {
+  font-size: 0.92rem;
+  color: var(--text-muted);
+}
+
+/* ==========================================================================
+   Contact Section & Footer
+   ========================================================================== */
+.contact-grid {
+  display: grid;
+  grid-template-columns: 1fr 1.15fr;
+  gap: 2.5rem;
+  align-items: start;
+}
+
+.contact-grid h2 {
+  font-size: clamp(1.55rem, 3vw, 2.2rem);
+  color: var(--brand-primary);
+  margin-bottom: 0.85rem;
+}
+
+.contact-details {
+  list-style: none;
+  margin-top: 1.5rem;
+  display: grid;
+  gap: 0.9rem;
+  background: var(--bg-surface);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-md);
+  padding: 1.35rem;
+}
+
+.contact-details li {
+  display: grid;
+  gap: 0.15rem;
+}
+
+.contact-details strong {
+  font-size: 0.8rem;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--brand-accent-hover);
+}
+
+.contact-details a {
+  text-decoration: none;
+  color: var(--brand-primary);
+  font-weight: 600;
+  word-break: break-word;
+}
+
+.contact-details a:hover {
+  text-decoration: underline;
+}
+
+.contact-form {
+  background: var(--bg-surface);
+  padding: 2rem;
+  border-radius: var(--radius-md);
+  border: 1px solid var(--border-color);
+  box-shadow: var(--shadow-sm);
+  display: grid;
+  gap: 1rem;
+}
+
+.contact-form h3 {
+  color: var(--brand-primary);
+  font-size: 1.2rem;
+}
+
+.contact-form label {
+  display: grid;
+  gap: 0.35rem;
+  font-weight: 600;
+  font-size: 0.88rem;
+  color: var(--brand-primary);
+}
+
+.contact-form input,
+.contact-form select,
+.contact-form textarea {
+  width: 100%;
+  padding: 0.7rem 0.85rem;
+  border: 1px solid #c3d1e4;
+  border-radius: var(--radius-sm);
+  background: #ffffff;
+  font: inherit;
+  color: var(--text-main);
+}
+
+.contact-form input:focus,
+.contact-form select:focus,
+.contact-form textarea:focus {
+  outline: 2px solid var(--brand-accent);
+  border-color: var(--brand-accent);
+}
+
+.site-footer {
+  background-color: var(--brand-dark);
+  color: rgba(255, 255, 255, 0.85);
+  padding: 1.5rem 0;
+  font-size: 0.88rem;
+}
+
+.footer-inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+.footer-meta {
+  display: flex;
+  align-items: center;
+  gap: 1.25rem;
+  flex-wrap: wrap;
+}
+
+.site-footer a {
+  color: var(--brand-accent);
+  text-decoration: none;
+  font-weight: 600;
+}
+
+/* ==========================================================================
+   Responsive Media Queries
+   ========================================================================== */
+@media (max-width: 900px) {
+  .hero-grid,
+  .about-intro-grid,
+  .contact-grid,
+  .org-branches {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 720px) {
+  html {
+    scroll-padding-top: 118px;
+  }
+
+  .nav-wrapper {
+    justify-content: center;
+    text-align: left;
+    padding-block: 0.65rem;
+  }
+
+  .brand-logo {
+    width: 100%;
+    justify-content: space-between;
+  }
+
+  .main-nav {
+    width: 100%;
+    justify-content: space-between;
+    padding-top: 0.5rem;
+    border-top: 1px solid var(--border-color);
+  }
+}
+
+@media (max-width: 480px) {
+  .topbar-inner {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .brand-logo img {
+    height: 38px;
+  }
+
+  .main-nav {
+    gap: 0.5rem;
+  }
+
+  .main-nav a:not(.btn) {
+    font-size: 0.85rem;
+  }
+
+  .main-nav .btn-sm {
+    padding: 0.42rem 0.78rem;
+    font-size: 0.8rem;
+  }
+
+  .hero-actions .btn {
+    width: 100%;
+  }
+
+  .contact-form {
+    padding: 1.35rem;
+  }
+}
